@@ -9,7 +9,7 @@ class ItemRepository extends BaseRepository implements ItemInterface
         
     public function __construct(Item $item)
     {
-        // $model inherited from Base Repository
+        // $model property inherited from Base Repository
         $this->model = $item;
     }
 }

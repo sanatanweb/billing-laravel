@@ -9,6 +9,7 @@ class UnitRepository extends BaseRepository implements UnitInterface
     
     public function __construct(Unit $unit)
     {
-        
+        // $model property inherited from Base Repository
+        $this->model = $unit;
     }
 }

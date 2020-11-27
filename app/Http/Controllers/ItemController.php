@@ -37,12 +37,19 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
+        $data = $this->validate($request,[
+            'type'=>'required',
+            'name'=>'required',
+            'unit'=>'required',
+            'selling_price'=>'required',
+            'description'=>'nullable'
+        ]);
+        
         $status = $this->itemRepository->create($data);
         if ($status) {
-            
+            return true;
         } else {
-
+            return false;
         }
     }
 
@@ -54,7 +61,12 @@ class ItemController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = $this->itemRepository->find($id);
+        if ($data) {
+            return $data;
+        } else {
+            return 'Not found';
+        }
     }
     
     /**
@@ -66,7 +78,22 @@ class ItemController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $this->validate($request,[
+            'type'=>'required',
+            'name'=>'required',
+            'unit'=>'required',
+            'selling_price'=>'required',
+            'description'=>'nullable'
+        ]);
+
+        $status = $this->itemRepository->update($id, $data);
+
+        if ($status) {
+            return 'Updated';
+        } else {
+            return 'Not Updated';
+        }
+
     }
 
     /**
@@ -77,6 +104,11 @@ class ItemController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = $this->itemRepository->find($id);
+        if ($data) {
+            return $this->itemRepository->delete($id);
+        } else {
+            return 'Not Found';
+        }
     }
 }
