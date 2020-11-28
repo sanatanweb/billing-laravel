@@ -5,16 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BillingAddress extends Model
+class InvoiceItem extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'customer_id',
-        'country',
-        'province',
-        'district',
-        'city',
-        'address'
+        'invoice_id',
+        'item_id',
+        'rate',
+        'quantity',
+        'discount',
+        'discount_type',
+        'subtotal'
     ];
 }

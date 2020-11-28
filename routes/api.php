@@ -5,9 +5,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\ContactPersonController;
-use App\Http\Controllers\BillingAddressController;
-use App\Models\BillingAddress;
+use App\Http\Controllers\InvoiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +23,5 @@ Route::middleware(['auth:sanctum'])->prefix('v1')->group(function(){
     Route::apiResource('item', ItemController::class);
     Route::apiResource('unit', UnitController::class);
     Route::apiResource('customer', CustomerController::class);
-    Route::apiResource('contact-person', ContactPersonController::class);
-    Route::apiResource('billing-address', BillingAddress::class);
+    Route::apiResource('invoice', InvoiceController::class);
 });
