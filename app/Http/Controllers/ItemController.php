@@ -45,9 +45,11 @@ class ItemController extends Controller
             'description'=>'nullable'
         ]);
         
-        $status = $this->itemRepository->create($data);
-        if ($status) {
-            return true;
+        $item = $this->itemRepository->create($data);
+        if ($item) {
+            return response([
+                'data'=>new ItemResource($item)
+            ],201);
         } else {
             return false;
         }
@@ -62,6 +64,7 @@ class ItemController extends Controller
     public function show($id)
     {
         $data = $this->itemRepository->find($id);
+        
         if ($data) {
             return $data;
         } else {

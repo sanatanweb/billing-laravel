@@ -21,7 +21,7 @@ class AuthController extends Controller
             $credentials = request(['email', 'password']); 
             
             if (!Auth::attempt($credentials)) {      
-                return response()->json(['status_code' => 500, 'message' => 'Unauthorized']);    
+                return response(['message' => 'Unauthenticated'],401);    
             }    
             
             $user = User::where('email', $request->email)->first();    
@@ -30,6 +30,7 @@ class AuthController extends Controller
                 throw new \Exception('Error in Login');    
             }    
             
+            // Creating plaintext token from Sanctum
             $tokenResult = $user->createToken('authToken')->plainTextToken;    
             return response()->json(['status_code' => 200, 'access_token' => $tokenResult, 'token_type' => 'Bearer',]);  
         } catch (Exception $error) {    
@@ -37,8 +38,15 @@ class AuthController extends Controller
         }
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
-
+        
     }
+
+    public function deleteTokens(Request $request)
+    {
+        $user = User::where('email', $request->email)->first();    
+        $user->tokens()->delete();
+    }
+
 }
