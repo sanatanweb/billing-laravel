@@ -19,6 +19,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind('App\Repositories\Customer\CustomerInterface','App\Repositories\Customer\CustomerRepository');
         $this->app->bind('App\Repositories\BillingAddress\BillingAddressInterface','App\Repositories\BillingAddress\BillingAddressRepository');
         $this->app->bind('App\Repositories\ContactPerson\ContactPersonInterface','App\Repositories\ContactPerson\ContactPersonRepository');
+        $this->app->bind('App\Repositories\Invoice\InvoiceInterface','App\Repositories\Invoice\InvoiceRepository');
+        $this->app->bind('App\Repositories\InvoiceItem\InvoiceItemInterface','App\Repositories\InvoiceItem\InvoiceItemRepository');
     }
 
     /**
